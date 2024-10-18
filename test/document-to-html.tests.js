@@ -348,7 +348,7 @@ test('highlighted runs are ignored by default', function() {
     var run = runOfText("Hello.", {highlight: "yellow"});
     var converter = new DocumentConverter();
     return converter.convertToHtml(run).then(function(result) {
-        assert.equal(result.value, "Hello.");
+        assert.equal(result.value, '<span style="background-color: yellow">Hello.</span>');
     });
 });
 
@@ -363,7 +363,7 @@ test('highlighted runs can be configured with style mapping for all highlights',
         ]
     });
     return converter.convertToHtml(run).then(function(result) {
-        assert.equal(result.value, "<mark>Hello.</mark>");
+        assert.equal(result.value, '<span style="background-color: yellow">Hello.</span>');
     });
 });
 
@@ -385,7 +385,7 @@ test('highlighted runs can be configured with style mapping for specific highlig
         ]
     });
     return converter.convertToHtml(paragraph).then(function(result) {
-        assert.equal(result.value, '<p><mark class="yellow">Yellow</mark><mark>Red</mark></p>');
+        assert.equal(result.value, '<p><span style="background-color: yellow">Yellow</span><span style="background-color: red">Red</span></p>');
     });
 });
 
