@@ -422,10 +422,10 @@ test('textboxes are read', function() {
     });
 });
 
-test('underline is ignored by default', function() {
+test('underline is not ignored by default', function() {
     var docxPath = path.join(__dirname, "test-data/underline.docx");
     return mammoth.convertToHtml({path: docxPath}).then(function(result) {
-        assert.equal(result.value, '<p><strong>The Sunset Tree</strong></p>');
+        assert.equal(result.value, '<p><strong>The <u>Sunset</u> Tree</strong></p>');
     });
 });
 

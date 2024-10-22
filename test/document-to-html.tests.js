@@ -184,11 +184,11 @@ test('consecutive bold runs are wrapped in a single <strong> element', function(
     });
 });
 
-test('underline runs are ignored by default', function() {
+test('underline runs are not ignored by default', function() {
     var run = runOfText("Hello.", {isUnderline: true});
     var converter = new DocumentConverter();
     return converter.convertToHtml(run).then(function(result) {
-        assert.equal(result.value, "Hello.");
+        assert.equal(result.value, "<u>Hello.</u>");
     });
 });
 
