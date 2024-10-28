@@ -227,14 +227,14 @@ test('mammoth.transforms.paragraph only transforms paragraphs', function() {
 test('inline images referenced by path relative to part are included in output', function() {
     var docxPath = path.join(__dirname, "test-data/tiny-picture.docx");
     return mammoth.convertToHtml({path: docxPath}).then(function(result) {
-        assert.equal(result.value, '<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAOvgAADr4B6kKxwAAAABNJREFUKFNj/M+ADzDhlWUYqdIAQSwBE8U+X40AAAAASUVORK5CYII=" /></p>');
+        assert.equal(result.value, '<p><img width="10px" height="10px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAOvgAADr4B6kKxwAAAABNJREFUKFNj/M+ADzDhlWUYqdIAQSwBE8U+X40AAAAASUVORK5CYII=" /></p>');
     });
 });
 
 test('inline images referenced by path relative to base are included in output', function() {
     var docxPath = path.join(__dirname, "test-data/tiny-picture-target-base-relative.docx");
     return mammoth.convertToHtml({path: docxPath}).then(function(result) {
-        assert.equal(result.value, '<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAOvgAADr4B6kKxwAAAABNJREFUKFNj/M+ADzDhlWUYqdIAQSwBE8U+X40AAAAASUVORK5CYII=" /></p>');
+        assert.equal(result.value, '<p><img width="10px" height="10px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAOvgAADr4B6kKxwAAAABNJREFUKFNj/M+ADzDhlWUYqdIAQSwBE8U+X40AAAAASUVORK5CYII=" /></p>');
     });
 });
 
@@ -247,7 +247,7 @@ test('src of inline images can be changed using read("base64")', function() {
     });
     return mammoth.convertToHtml({path: docxPath}, {convertImage: convertImage}).then(function(result) {
         assert.deepEqual(result.messages, []);
-        assert.equal(result.value, '<p><img src="iV,image/png" /></p>');
+        assert.equal(result.value, '<p><img width="10px" height="10px" src="iV,image/png" /></p>');
     });
 });
 
@@ -260,7 +260,7 @@ test('src of inline images can be changed using readAsBase64String()', function(
     });
     return mammoth.convertToHtml({path: docxPath}, {convertImage: convertImage}).then(function(result) {
         assert.deepEqual(result.messages, []);
-        assert.equal(result.value, '<p><img src="iV,image/png" /></p>');
+        assert.equal(result.value, '<p><img width="10px" height="10px" src="iV,image/png" /></p>');
     });
 });
 
@@ -275,7 +275,7 @@ test('src of inline images can be changed using readAsArrayBuffer()', function()
     });
     return mammoth.convertToHtml({path: docxPath}, {convertImage: convertImage}).then(function(result) {
         assert.deepEqual(result.messages, []);
-        assert.equal(result.value, '<p><img src="iV,image/png" /></p>');
+        assert.equal(result.value, '<p><img width="10px" height="10px" src="iV,image/png" /></p>');
     });
 });
 
@@ -290,7 +290,7 @@ test('src of inline images can be changed using read()', function() {
     });
     return mammoth.convertToHtml({path: docxPath}, {convertImage: convertImage}).then(function(result) {
         assert.deepEqual(result.messages, []);
-        assert.equal(result.value, '<p><img src="iV,image/png" /></p>');
+        assert.equal(result.value, '<p><img width="10px" height="10px" src="iV,image/png" /></p>');
     });
 });
 
@@ -305,14 +305,14 @@ test('src of inline images can be changed using readAsBuffer()', function() {
     });
     return mammoth.convertToHtml({path: docxPath}, {convertImage: convertImage}).then(function(result) {
         assert.deepEqual(result.messages, []);
-        assert.equal(result.value, '<p><img src="iV,image/png" /></p>');
+        assert.equal(result.value, '<p><img width="10px" height="10px" src="iV,image/png" /></p>');
     });
 });
 
 test('images stored outside of document are included in output', function() {
     var docxPath = path.join(__dirname, "test-data/external-picture.docx");
     return mammoth.convertToHtml({path: docxPath}).then(function(result) {
-        assert.equal(result.value, '<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAOvgAADr4B6kKxwAAAABNJREFUKFNj/M+ADzDhlWUYqdIAQSwBE8U+X40AAAAASUVORK5CYII=" /></p>');
+        assert.equal(result.value, '<p><img width="10px" height="10px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAOvgAADr4B6kKxwAAAABNJREFUKFNj/M+ADzDhlWUYqdIAQSwBE8U+X40AAAAASUVORK5CYII=" /></p>');
         assert.deepEqual(result.messages, []);
     });
 });

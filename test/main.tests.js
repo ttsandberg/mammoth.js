@@ -32,7 +32,7 @@ var imageBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6
 test("inline images are included in output if writing to single file", function() {
     return runMammoth(testPath("tiny-picture.docx")).then(function(result) {
         assert.equal(result.stderrOutput, "");
-        assert.equal(result.output, '<p><img src="data:image/png;base64,' + imageBase64 + '" /></p>');
+        assert.equal(result.output, '<p><img width="10px" height="10px" src="data:image/png;base64,' + imageBase64 + '" /></p>');
     });
 });
 
@@ -43,7 +43,7 @@ test("images are written to separate files if output dir is set", function() {
         return runMammoth(testPath("tiny-picture.docx"), "--output-dir", tempDir).then(function(result) {
             assert.equal(result.stderrOutput, "");
             assert.equal(result.output, "");
-            assert.equal(fs.readFileSync(outputPath, "utf8"), '<p><img src="1.png" /></p>');
+            assert.equal(fs.readFileSync(outputPath, "utf8"), '<p><img width="10px" height="10px" src="1.png" /></p>');
             assert.equal(fs.readFileSync(imagePath, "base64"), imageBase64);
         });
     });
@@ -71,7 +71,7 @@ test("--output-format=markdown option generate markdown output", function() {
 function runMammoth() {
     var args = Array.prototype.slice.call(arguments, 0);
     var deferred = promises.defer();
-    
+
     var processArgs = ["node", "bin/mammoth"].concat(args);
     // TODO: proper escaping of args
     var command = processArgs.join(" ");
@@ -80,7 +80,7 @@ function runMammoth() {
         assert.equal(error, null);
         deferred.resolve({output: stdout, stderrOutput: stderr});
     });
-    
+
     return deferred.promise;
 }
 
